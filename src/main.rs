@@ -1,6 +1,8 @@
 #![feature(plugin)]
 #![plugin(clippy)]
 
+use std::fmt;
+
 struct Person {
     name: String,
 }
@@ -13,9 +15,15 @@ impl Person {
     }
 }
 
+impl fmt::Display for Person {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name)
+    }
+}
+
 fn main() {
-    let you = Person::new("Challenger".to_owned());
-    println!("Hello {}!", you.name);
+    let you = Person::new("Challenger");
+    println!("Hello {}!", you);
 }
 
 #[test]
