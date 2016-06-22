@@ -6,9 +6,9 @@ struct Person {
 }
 
 impl Person {
-    fn new(name: String) -> Person {
+    fn new<S: Into<String>>(name: S) -> Person {
         Person {
-            name: name,
+            name: name.into(),
         }
     }
 }
